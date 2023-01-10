@@ -14,9 +14,9 @@ name: 更新_检查器 #Update_Checker
 env:
 
   # Jason6111OpenWrtAction源码
-  REPO_URL_Jason6111OpenWrt_Personal: https://github.com/Jason6111/OpenWrt_Personal
-  REPO_BRANCH_Jason6111OpenWrt_Personal: main
-  REPO_PATH_Jason6111OpenWrt_Personal : "Jason6111OpenWrt_Personal"
+  REPO_URL_Dtyyyyyy/dty_OpenWrt: https://github.com/Dtyyyyyy/dty_OpenWrt
+  REPO_BRANCH_Dtyyyyyy/dty_OpenWrt: main
+  REPO_PATH_Dtyyyyyy/dty_OpenWrt : "Dtyyyyyy/dty_OpenWrt"
 
   # Lean源码
   REPO_URL_Lede: https://github.com/coolsnowwolf/lede
@@ -85,9 +85,9 @@ jobs:
     - name: 获取提交散列 #Get Commit Hash
       id: getHash
       run: |
-        git clone --depth 1 $REPO_URL_Jason6111OpenWrt_Personal -b $REPO_BRANCH_Jason6111OpenWrt_Personal $REPO_PATH_Jason6111OpenWrt_Personal
-        cd $REPO_PATH_Jason6111OpenWrt_Personal
-        echo "commitHash_Jason6111OpenWrt_Personal=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+        git clone --depth 1 $REPO_URL_Dtyyyyyy/dty_OpenWrt -b $REPO_BRANCH_Dtyyyyyy/dty_OpenWrt $REPO_PATH_Dtyyyyyy/dty_OpenWrt
+        cd $REPO_PATH_Dtyyyyyy/dty_OpenWrt
+        echo "commitHash_Dtyyyyyy/dty_OpenWrt=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
         cd
 
         git clone --depth 1 $REPO_URL_Lede -b $REPO_BRANCH_Lede $REPO_PATH_Lede
@@ -133,7 +133,7 @@ jobs:
     - name: 显示提交头和组合头 #Show Commit Head and Combination Heads
       id: combHeader
       run: |
-        echo "commitHash_Jason6111OpenWrt_Personal: ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal }}"
+        echo "commitHash_Dtyyyyyy/dty_OpenWrt: ${{ steps.getHash.outputs.commitHash_Dtyyyyyy/dty_OpenWrt }}"
         echo "commitHash_Lede: ${{ steps.getHash.outputs.commitHash_Lede }}"
         echo "commitHash_Lede_Package: ${{ steps.getHash.outputs.commitHash_Lede_Package }}"
         echo "commitHash_Lede_Luci: ${{ steps.getHash.outputs.commitHash_Lede_Luci }}"
@@ -143,7 +143,7 @@ jobs:
         echo "commitHash_ThemeArgon: ${{ steps.getHash.outputs.commitHash_ThemeArgon }}"
         echo "commitHash_ArgonConfig: ${{ steps.getHash.outputs.commitHash_ArgonConfig }}"
         echo "commitHash_All=\
-          ${{steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal}}\
+          ${{steps.getHash.outputs.commitHash_Dtyyyyyy/dty_OpenWrt}}\
           ${{steps.getHash.outputs.commitHash_Lede}}\
           ${{steps.getHash.outputs.commitHash_Lede_Package}}\
           ${{steps.getHash.outputs.commitHash_Lede_Luci}}\
@@ -163,7 +163,7 @@ jobs:
     - name: 保存新提交散列 #Save New Commit Hash
       if: steps.cacheHash.outputs.cache-hit != 'true'
       run: |
-        echo ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal }} | tee .commitHash_Jason6111OpenWrt_Personal
+        echo ${{ steps.getHash.outputs.commitHash_Dtyyyyyy/dty_OpenWrt }} | tee .commitHash_Dtyyyyyy/dty_OpenWrt
         echo ${{ steps.getHash.outputs.commitHash_Lede }} | tee .commitHash_Lede
         echo ${{ steps.getHash.outputs.commitHash_Lede_Package }} | tee .commitHash_Lede_Package
         echo ${{ steps.getHash.outputs.commitHash_Lede_Luci }} | tee .commitHash_Lede_Luci
